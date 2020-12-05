@@ -1,0 +1,3 @@
+include 'web-service'
+rootProject.name = 'ilivalidator-web-service'
+
