@@ -1,1 +1,3 @@
 # ilivalidator-web-service-lambda
+
+- `-e AWS_ACCESS_KEY_ID=XXXXXXXXXXXXX -e AWS_SECRET_ACCESS_KEY=YYYYYYYYYYYY ` 
