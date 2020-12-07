@@ -2,6 +2,8 @@ plugins {
 	id 'org.springframework.boot' version '2.4.0'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
+	id "com.github.johnrengelman.shadow" version "6.1.0"
+	id "org.springframework.boot.experimental.thin-launcher" version "1.0.25.RELEASE"
 }
 
 group = 'ch.so.agi.ilivalidator'
@@ -14,12 +16,46 @@ repositories {
 
 ext {
 	set('springCloudVersion', "2020.0.0-M6")
+	awsLambdaEventsVersion = "2.0.2"
+    awsLambdaCoreVersion = "1.1.0"
+}
+
+assemble.dependsOn = [shadowJar, thinJar]
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ch.so.agi.ilivalidator.lambda.IlivalidatorLambdaApplication'
+    }
+}
+
+import com.github.jengelman.gradle.plugins.shadow.transformers.*
+
+shadowJar {
+    classifier = 'aws'
+    dependencies {
+        exclude(
+            //dependency("org.springframework.cloud:spring-cloud-starter-function-webflux"))
+            dependency("org.springframework.cloud:spring-cloud-starter-function-web"))
+    }
+    // Required for Spring
+    mergeServiceFiles()
+    append 'META-INF/spring.handlers'
+    append 'META-INF/spring.schemas'
+    append 'META-INF/spring.tooling'
+    transform(PropertiesFileTransformer) {
+        paths = ['META-INF/spring.factories']
+        mergeStrategy = "append"
+    }
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.cloud:spring-cloud-function-context'
     implementation 'org.springframework.cloud:spring-cloud-function-adapter-aws'
+    //implementation 'org.springframework.cloud:spring-cloud-starter-function-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-function-webflux'
+    compileOnly("com.amazonaws:aws-lambda-java-events:${awsLambdaEventsVersion}")
+    compileOnly("com.amazonaws:aws-lambda-java-core:${awsLambdaCoreVersion}")
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
