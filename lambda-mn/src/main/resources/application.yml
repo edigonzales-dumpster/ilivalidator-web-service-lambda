@@ -1,0 +1,8 @@
+micronaut:
+  application:
+    name: lambdaMn
+
+app:
+  #s3AccessKey: ${awsAccessKeyAgi} Im sdk-v2 als env variable setzen. 
+  #s3SecretKey: ${awsSecretAccessKeyAgi}
+  s3Bucket: ch.so.agi.ilivalidator
