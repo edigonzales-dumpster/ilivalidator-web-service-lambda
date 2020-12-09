@@ -12,3 +12,4 @@
 - Ilivalidator extension functions (a al GRETL?)
 - ci/cd
 - testing
+- AWS Parameter Store (v.a. für Spring Boot Teil)
