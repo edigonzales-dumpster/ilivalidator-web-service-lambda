@@ -14,3 +14,4 @@
 - testing
 - tests mit den Daten von ilivalidator-websocket. Dort dann nur noch, ob der web service als solches funktioniert.
 - doku
+- AWS Parameter Store (v.a. für Spring Boot Teil)
