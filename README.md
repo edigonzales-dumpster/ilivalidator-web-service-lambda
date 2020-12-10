@@ -12,3 +12,5 @@
 - Ilivalidator extension functions (a al GRETL?)
 - ci/cd
 - testing
+- tests mit den Daten von ilivalidator-websocket. Dort dann nur noch, ob der web service als solches funktioniert.
+- doku
