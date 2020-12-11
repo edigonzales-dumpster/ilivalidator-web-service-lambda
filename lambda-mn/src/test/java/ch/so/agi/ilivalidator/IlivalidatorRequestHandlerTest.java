@@ -24,11 +24,8 @@ public class IlivalidatorRequestHandlerTest {
     private static final Logger log = LoggerFactory.getLogger(IlivalidatorRequestHandlerTest.class);
 
     private static IlivalidatorRequestHandler ilivalidatorRequestHandler;
-
     private static S3Client s3;
-    
     private static String s3Bucket = "ch.so.agi.ilivalidator";
-    
     private static String subFolder = "test";
     
     @BeforeAll
@@ -59,12 +56,12 @@ public class IlivalidatorRequestHandlerTest {
         
         // Run validation
         ValidationSettings validationSettings = new ValidationSettings(); 
-        validationSettings.setDataFile(key);        
+        validationSettings.setDatafile(key);        
         validationSettings = ilivalidatorRequestHandler.execute(validationSettings);
 
         // Check results
         assertTrue(validationSettings.isValid());
-        assertNotNull(validationSettings.getLogFile());
+        assertNotNull(validationSettings.getLogfile());
         
         // Clean up
         ArrayList<ObjectIdentifier> toDelete = new ArrayList<ObjectIdentifier>();

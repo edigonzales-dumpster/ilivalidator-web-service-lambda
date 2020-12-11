@@ -39,8 +39,13 @@ java {
     targetCompatibility = JavaVersion.toVersion("1.8")
 }
 
+shadowJar {
+    archiveName = "ilivalidator-lambda-aws-${version}.${extension}"
+}
+
 tasks {
 
 
 }
+
 

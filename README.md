@@ -8,10 +8,14 @@
 - Lambda in Gradle build integrieren.
 - Lambda Qualifiers
 - Lambda max / reserved concurrency
-- Ilivalidator
-- Ilivalidator extension functions (a al GRETL?)
+- ~~Ilivalidator~~
+- ~~Ilivalidator extension functions (a al GRETL?)~~
 - ci/cd
-- testing
+- ~~testing~~
 - tests mit den Daten von ilivalidator-websocket. Dort dann nur noch, ob der web service als solches funktioniert.
 - doku
+  * policy, role...
+  * ili_cache directory (env oder im Code setzen -> siehe Blog)
 - AWS Parameter Store (v.a. für Spring Boot Teil)
+- Cloudwatch logs aufräumen? kosten?
+- Cloudformation?

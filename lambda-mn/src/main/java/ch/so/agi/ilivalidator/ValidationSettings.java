@@ -18,20 +18,20 @@ public class ValidationSettings {
     
     public ValidationSettings() {}
 
-    public String getDataFile() {
+    public String getDatafile() {
         return datafile;
     }
 
-    public void setDataFile(String dataFile) {
-        this.datafile = dataFile;
+    public void setDatafile(String datafile) {
+        this.datafile = datafile;
     }
 
-    public String getLogFile() {
+    public String getLogfile() {
         return logfile;
     }
 
-    public void setLogFile(String logFile) {
-        this.logfile = logFile;
+    public void setLogfile(String logfile) {
+        this.logfile = logfile;
     }
 
     public boolean isValid() {
@@ -40,5 +40,10 @@ public class ValidationSettings {
 
     public void setValid(boolean valid) {
         this.valid = valid;
+    }
+
+    @Override
+    public String toString() {
+        return "ValidationSettings [datafile=" + datafile + ", logfile=" + logfile + ", valid=" + valid + "]";
     }
 }

@@ -61,8 +61,9 @@ public class IlivalidatorRequestHandler extends MicronautRequestHandler<Validati
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
-    
-        String key = input.getDataFile();
+            
+        String key = input.getDatafile();
+        
         String[] keys = key.split("/");
         String subfolder = keys[0];
         String dataFileName = keys[1];
@@ -160,7 +161,7 @@ public class IlivalidatorRequestHandler extends MicronautRequestHandler<Validati
         boolean valid = Validator.runValidation(dataFile.getAbsolutePath(), settings);
         
         key = subfolder + "/" +  logFileName.substring(logFileName.lastIndexOf("/")+1);
-        input.setLogFile(key);
+        input.setLogfile(key);
         input.setValid(valid);
         
         // Upload logfile.
@@ -175,7 +176,7 @@ public class IlivalidatorRequestHandler extends MicronautRequestHandler<Validati
      */
     private String getModelNameFromTransferFile(String transferFileName) throws IoxException {
         String model = null;
-        String ext = getExtensionByStringHandling(transferFileName).orElseThrow();
+        String ext = getFileExtension(transferFileName);
         IoxReader ioxReader = null;
 
         try {
@@ -228,9 +229,10 @@ public class IlivalidatorRequestHandler extends MicronautRequestHandler<Validati
     /*
      * Get the extension of a file.
      */
-    private Optional<String> getExtensionByStringHandling(String filename) {
-        return Optional.ofNullable(filename)
-          .filter(f -> f.contains("."))
-          .map(f -> f.substring(filename.lastIndexOf(".") + 1));
+    private static String getFileExtension(String fileName) {
+        if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+        return fileName.substring(fileName.lastIndexOf(".")+1);
+        else return "";
     }
+
 }
