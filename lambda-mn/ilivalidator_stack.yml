@@ -1,0 +1,53 @@
+Resources:
+  HelloLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: HelloLambdaRole
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::465066823493:policy/agi-s3
+  RolePolicies: 
+    Type: "AWS::IAM::Policy"
+    Properties: 
+      PolicyName: "HelloLambdaFunctionLogPolicy"
+      PolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - Effect: "Allow"
+            Action: "logs:CreateLogGroup"
+            Resource: "*"
+          - Effect: "Allow"
+            Action:
+              - "logs:CreateLogStream"
+              - "logs:PutLogEvents"
+            Resource: "arn:aws:logs:eu-central-1:465066823493:log-group:/aws/lambda/HelloLambdaFunction:*"
+      Roles: 
+        - Ref: "HelloLambdaRole"
+  HelloLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: HelloLambdaFunction
+      Role: !GetAtt HelloLambdaRole.Arn
+      Runtime: python3.7
+      Handler: index.my_handler
+      Code:
+        ZipFile: |
+          def my_handler(event, context):
+            message = 'Hello Lambda World!'
+            return message
+      MemorySize: 2048
+      Timeout: 900
+      ReservedConcurrentExecutions: 25
+      Environment:
+        Variables:
+          ILI_CACHE: /tmp
+  LogsLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/HelloLambdaFunction"
+      RetentionInDays: 7
