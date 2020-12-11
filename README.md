@@ -9,7 +9,7 @@
 - Lambda Qualifiers
 - ~~Lambda max / reserved concurrency~~
 - ~~Ilivalidator~~
-- ~~Ilivalidator extension functions (a al GRETL?)~~
+- ~~Ilivalidator extension functions (à la GRETL?)~~
 - CI/CD Github Action
 - Tests
   * ~~Grundlage~~
