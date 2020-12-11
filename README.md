@@ -7,7 +7,7 @@
 ## todo
 - Lambda in Gradle build integrieren.
 - Lambda Qualifiers
-- Lambda max / reserved concurrency
+- ~~Lambda max / reserved concurrency~~
 - ~~Ilivalidator~~
 - ~~Ilivalidator extension functions (a al GRETL?)~~
 - ci/cd
