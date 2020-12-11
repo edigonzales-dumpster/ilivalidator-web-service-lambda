@@ -17,6 +17,7 @@
 - Dokumentation
   * policy, role...
   * ili_cache directory (env oder im Code setzen -> siehe Blog)
+  * ili und toml
 - AWS Parameter Store (v.a. für Spring Boot Teil)
 - Cloudwatch logs aufräumen? kosten?
 - Cloudformation
